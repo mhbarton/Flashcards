@@ -8,11 +8,12 @@ const Round = require('../src/Round');
 
 describe('Round', function(){
   let deck;
+  let round;
+  let turn;
   let card1;
   let card2;
   let card3;
   let card4;
-  let round;
 
   beforeEach(function(){
     card1 = new Card(1, "What allows you to define a set of related information using key-value pairs?", ["object", "array", "function"], "object");
@@ -22,28 +23,73 @@ describe('Round', function(){
 
     deck = new Deck([card1, card2, card3, card4]);
     round = new Round(deck)
+    // turn = new Turn('guess', card1)
   });
 
 it('should be a function', function(){
+
   expect(Round).to.be.a('function');
 });
 
 it('should be an instance of Round', function(){
+
   expect(round).to.be.an.instanceOf(Round);
 });
 
-it.skip('should have the first card in deck be the current card', function(){
-  expect(round.returnCurrentCard()).to.equal(card1);
+it('should return the current card being played', function(){
+  round.returnCurrentCard()
+
+  expect(round.currentCard).to.equal(card1);
+})
+
+it('should let the player take a turn and increment those turns', function(){
+  round.takeTurns()
+
+  expect(round.turns).to.equal(1);
+})
+
+it('should start with no incorrect guesses', function(){
+
+  expect(round.incorrectGuesses).to.deep.equal([]);
+})
+
+it('should be able to store the incorrect guesses', function(){
+  round.takeTurns('function')
+  round.takeTurns('array')
+  round.takeTurns('iteration method')
+  round.takeTurns('mutator method')
+
+  expect(round.incorrectGuesses).to.deep.equal([1, 3, 4])
+
+})
+
+it('should give the user feedback on correct or incorrect answers', function(){
+
+  expect(round.takeTurns('function')).to.equal('incorrect 😢');
+  expect(round.takeTurns('array')).to.equal('correct! 🥳');
 });
 
-it.skip('should return the current card being played', function(){
-  expect(round.returnCurrentCard()).to.equal(card1);
+it('should calculate and return the percentage of correct guesses', function(){
+  round.takeTurns('function');
+  round.takeTurns('array');
+  round.takeTurns('iteration method');
+  round.takeTurns('mutator method');
+
+  round.calculatePercentCorrect();
+
+  expect(round.calculatePercentCorrect()).to.equal(25);
 })
 
-it.skip('should let the player take a turn', function(){
-  expect(round.takeTurns).to.equal();
-})
 
+it('should end the user\'s round', function(){
+  round.takeTurns('function');
+  round.takeTurns('array');
+  round.takeTurns('iteration method');
+  round.takeTurns('mutator method');
+  round.endRound();
+
+  expect(round.endRound()).to.equal(`** The round is over! ** You have answered ${25}% of the questions correctly!`)
+})
 });
 
 

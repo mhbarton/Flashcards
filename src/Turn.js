@@ -18,9 +18,9 @@ class Turn{
   giveFeedback(){
     if(this.guess === this.card.correctAnswer){
       this.guess = true;
-      return 'correct!🥳'
+      return 'correct! 🥳'
     }
-    return 'incorrect😢';
+    return 'incorrect 😢';
   }
 };
 

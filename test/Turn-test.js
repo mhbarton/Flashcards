@@ -7,10 +7,12 @@ const Turn = require('../src/Turn');
 describe('Turn', function(){
   let card;
   let turn;
+  let turn2;
 
   beforeEach(function() {
     card = new Card(1, 'What allows you to define a set of related information using key-value pairs?', ['object', 'array', 'function'], 'object');
     turn = new Turn('object', card)
+    turn2 = new Turn('function', card)
   });
 
 it('should be a function', function(){
@@ -34,7 +36,8 @@ it('should evaluate the user\'s guess', function(){
 });
 
 it('should give the user feedback', function(){
-  expect(turn.giveFeedback()).to.equal('correct!🥳')
+  expect(turn.giveFeedback()).to.equal('correct! 🥳')
+  expect(turn2.giveFeedback()).to.equal('incorrect 😢')
 });
 
 });
