@@ -43,7 +43,7 @@ it('should return the current card being played', function(){
 })
 
 it('should let the player take a turn and increment those turns', function(){
-  round.takeTurns()
+  round.takeTurn()
 
   expect(round.turns).to.equal(1);
 })
@@ -54,10 +54,10 @@ it('should start with no incorrect guesses', function(){
 })
 
 it('should be able to store the incorrect guesses', function(){
-  round.takeTurns('function')
-  round.takeTurns('array')
-  round.takeTurns('iteration method')
-  round.takeTurns('mutator method')
+  round.takeTurn('function')
+  round.takeTurn('array')
+  round.takeTurn('iteration method')
+  round.takeTurn('mutator method')
 
   expect(round.incorrectGuesses).to.deep.equal([1, 3, 4])
 
@@ -65,15 +65,15 @@ it('should be able to store the incorrect guesses', function(){
 
 it('should give the user feedback on correct or incorrect answers', function(){
 
-  expect(round.takeTurns('function')).to.equal('incorrect 😢');
-  expect(round.takeTurns('array')).to.equal('correct! 🥳');
+  expect(round.takeTurn('function')).to.equal('incorrect 😢');
+  expect(round.takeTurn('array')).to.equal('correct! 🥳');
 });
 
 it('should calculate and return the percentage of correct guesses', function(){
-  round.takeTurns('function');
-  round.takeTurns('array');
-  round.takeTurns('iteration method');
-  round.takeTurns('mutator method');
+  round.takeTurn('function');
+  round.takeTurn('array');
+  round.takeTurn('iteration method');
+  round.takeTurn('mutator method');
 
   round.calculatePercentCorrect();
 
@@ -82,10 +82,10 @@ it('should calculate and return the percentage of correct guesses', function(){
 
 
 it('should end the user\'s round', function(){
-  round.takeTurns('function');
-  round.takeTurns('array');
-  round.takeTurns('iteration method');
-  round.takeTurns('mutator method');
+  round.takeTurn('function');
+  round.takeTurn('array');
+  round.takeTurn('iteration method');
+  round.takeTurn('mutator method');
   round.endRound();
 
   expect(round.endRound()).to.equal(`** The round is over! ** You have answered ${25}% of the questions correctly!`)
