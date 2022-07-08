@@ -1,7 +1,8 @@
 const Game = require('./src/Game');
 
 let game = new Game();
-game.start();
+
+  game.start();
 
 
 console.log('Your project is running...');
