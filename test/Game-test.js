@@ -21,4 +21,5 @@ it('should be a function', function(){
 it('should be an instance of Game', function(){
   expect(game).to.be.an.instanceOf(Game);
 })
+
 });
