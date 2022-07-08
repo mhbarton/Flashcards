@@ -27,6 +27,7 @@ class Round{
 
   endRound(){
     let endMessage = `** The round is over! ** You have answered ${this.calculatePercentCorrect()}% of the questions correctly!`
+    console.log(endMessage)
     return endMessage;
   }
 };
