@@ -15,7 +15,7 @@ class Game {
   createCards(){
     let cards = prototypeQuestions.map((card) => {
       return new Card(card.id, card.question, card.answers, card.correctAnswer)
-  });
+    });
     return cards;
   }
   createDeck(){
@@ -27,7 +27,6 @@ class Game {
     this.currentRound = new Round(this.createDeck())
     return this.currentRound
   };
-
 
   start(){
     this.createRound();
@@ -43,5 +42,4 @@ class Game {
       util.main(round);
   }
 }
-
 module.exports = Game;
